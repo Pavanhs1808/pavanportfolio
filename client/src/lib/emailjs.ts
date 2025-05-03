@@ -1,10 +1,10 @@
 import { z } from "zod";
 import emailjs from 'emailjs-com';
 
-// Get EmailJS credentials from environment variables
-const EMAILJS_SERVICE_ID = import.meta.env.EMAILJS_SERVICE_ID as string;
-const EMAILJS_TEMPLATE_ID = import.meta.env.EMAILJS_TEMPLATE_ID as string;
-const EMAILJS_USER_ID = import.meta.env.EMAILJS_USER_ID as string;
+// Get EmailJS credentials from Vite environment variables
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+const EMAILJS_USER_ID = import.meta.env.VITE_EMAILJS_USER_ID as string;
 
 // Contact form validation schema
 export const contactFormSchema = z.object({
@@ -16,12 +16,22 @@ export const contactFormSchema = z.object({
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-// Initialize EmailJS
-emailjs.init(EMAILJS_USER_ID);
+// Initialize EmailJS with the user ID
+if (EMAILJS_USER_ID) {
+  emailjs.init(EMAILJS_USER_ID);
+} else {
+  console.warn('EmailJS User ID not found. Contact form will not work.');
+}
 
 // Function to send email using EmailJS directly
 export const sendContactForm = async (data: ContactFormValues): Promise<boolean> => {
   try {
+    // Check if we have all the required credentials
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_USER_ID) {
+      console.error('Missing EmailJS credentials. Please check environment variables.');
+      return false;
+    }
+
     const templateParams = {
       from_name: data.name,
       from_email: data.email,
