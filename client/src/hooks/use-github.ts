@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { apiRequest } from "@/lib/queryClient";
 
 // GitHub repository interface
 export interface GitHubRepo {
@@ -41,37 +40,22 @@ export const useGitHubRepos = (username: string, limit: number = 6) => {
       setError(null);
 
       try {
-        // Try to fetch from our API first
-        const response = await apiRequest("GET", `/api/github/${username}`);
+        // Use the GitHub API directly
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=${limit}`);
         
-        if (response.ok) {
-          const data = await response.json();
-          
-          // Add image URLs to repositories
-          const enhancedRepos = data.map((repo: GitHubRepo, index: number) => ({
-            ...repo,
-            imageUrl: demoImages[index % demoImages.length]
-          })).slice(0, limit);
-          
-          setRepos(enhancedRepos);
-        } else {
-          // Fallback to direct GitHub API if our API fails
-          const directResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=${limit}`);
-          
-          if (!directResponse.ok) {
-            throw new Error(`Failed to fetch repositories: ${directResponse.statusText}`);
-          }
-          
-          const data = await directResponse.json();
-          
-          // Add image URLs to repositories
-          const enhancedRepos = data.map((repo: GitHubRepo, index: number) => ({
-            ...repo,
-            imageUrl: demoImages[index % demoImages.length]
-          }));
-          
-          setRepos(enhancedRepos);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch repositories: ${response.statusText}`);
         }
+        
+        const data = await response.json();
+        
+        // Add image URLs to repositories
+        const enhancedRepos = data.map((repo: GitHubRepo, index: number) => ({
+          ...repo,
+          imageUrl: demoImages[index % demoImages.length]
+        }));
+        
+        setRepos(enhancedRepos);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch repositories");
         console.error("Error fetching GitHub repositories:", err);

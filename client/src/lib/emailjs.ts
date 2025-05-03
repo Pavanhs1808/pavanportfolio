@@ -1,9 +1,10 @@
 import { z } from "zod";
+import emailjs from 'emailjs-com';
 
-// Define EmailJS service credentials
-const EMAILJS_SERVICE_ID = "service_portfolio";
-const EMAILJS_TEMPLATE_ID = "template_contact";
-const EMAILJS_PUBLIC_KEY = "your_public_key";
+// Get EmailJS credentials from environment variables
+const EMAILJS_SERVICE_ID = import.meta.env.EMAILJS_SERVICE_ID as string;
+const EMAILJS_TEMPLATE_ID = import.meta.env.EMAILJS_TEMPLATE_ID as string;
+const EMAILJS_USER_ID = import.meta.env.EMAILJS_USER_ID as string;
 
 // Contact form validation schema
 export const contactFormSchema = z.object({
@@ -15,28 +16,27 @@ export const contactFormSchema = z.object({
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-// Function to send email using EmailJS
+// Initialize EmailJS
+emailjs.init(EMAILJS_USER_ID);
+
+// Function to send email using EmailJS directly
 export const sendContactForm = async (data: ContactFormValues): Promise<boolean> => {
   try {
-    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        service_id: EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id: EMAILJS_PUBLIC_KEY,
-        template_params: {
-          from_name: data.name,
-          from_email: data.email,
-          subject: data.subject,
-          message: data.message
-        }
-      })
-    });
+    const templateParams = {
+      from_name: data.name,
+      from_email: data.email,
+      subject: data.subject,
+      message: data.message
+    };
 
-    return response.status === 200;
+    const response = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams
+    );
+
+    console.log('Email sent successfully:', response);
+    return true;
   } catch (error) {
     console.error("Error sending email:", error);
     return false;
