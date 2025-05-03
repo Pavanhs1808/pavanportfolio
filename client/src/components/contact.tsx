@@ -16,9 +16,27 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { contactFormSchema, type ContactFormValues, sendContactForm } from "@/lib/emailjs";
+import emailjs from 'emailjs-com';
 import { Mail, MapPin, Globe, Send } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter, FaDribbble } from "react-icons/fa";
+
+// Contact form validation schema
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(3, "Subject must be at least 3 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters")
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = 'service_pavanhs';
+const EMAILJS_TEMPLATE_ID = 'PALLtRYBITpMC5WoO';
+const EMAILJS_USER_ID = 'GIMRnHCDu8Cg0VJVJ';
+
+// Initialize EmailJS
+emailjs.init(EMAILJS_USER_ID);
 
 export function Contact() {
   const { toast } = useToast();
@@ -37,8 +55,20 @@ export function Contact() {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const success = await sendContactForm(data);
-      if (success) {
+      const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        subject: data.subject,
+        message: data.message
+      };
+
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      if (response.status === 200) {
         toast({
           title: "Message sent!",
           description: "Thank you for your message. I'll get back to you soon.",
@@ -49,6 +79,7 @@ export function Contact() {
         throw new Error("Failed to send message");
       }
     } catch (error) {
+      console.error("Error sending email:", error);
       toast({
         title: "Error sending message",
         description: "Please try again later or reach out directly via email.",
