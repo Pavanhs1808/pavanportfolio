@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaDribbble, FaInstagram } from "react-icons/fa";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,9 +14,9 @@ export function Footer() {
   
   const socialLinks = [
     { icon: FaGithub, href: "https://github.com/pavanhs1808", label: "GitHub" },
-    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
-    { icon: FaTwitter, href: "#", label: "Twitter" },
-    { icon: FaDribbble, href: "#", label: "Dribbble" }
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/pavan-hs-33137b272/", label: "LinkedIn" },
+    { icon: FaInstagram, href: "https://www.instagram.com/pavanhs_?igsh=MTdpMXM0MXVsNWRycg==", label: "Twitter" },
+    { icon: FaTwitter, href: "https://x.com/PavanHs1815", label: "Dribbble" }
   ];
 
   return (
@@ -25,7 +25,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h2 className="text-2xl font-bold">Pavan<span className="text-primary">.dev</span></h2>
-            <p className="text-muted mt-2">Frontend Developer & UI Designer</p>
+            <p className="text-muted mt-2">Software Developer,Web developer & problem solver</p>
           </div>
           
           <div className="flex space-x-6">

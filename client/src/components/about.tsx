@@ -45,12 +45,14 @@ export function About() {
           >
             <h3 className="text-2xl font-bold mb-4">Who am I?</h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              I'm a passionate Frontend Developer with a keen eye for design and user experience. I specialize in building responsive, 
-              performant web applications using modern JavaScript frameworks and libraries.
+              I'm a versatile Full-Stack Developer with expertise in AI/ML technologies. I specialize in building scalable web applications 
+              and integrating artificial intelligence solutions. My strong foundation in both frontend and backend development allows me to create 
+              comprehensive solutions from concept to deployment.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              With a background in computer science and UI/UX design, I bridge the gap between aesthetic appeal and technical 
-              functionality. I love turning complex problems into simple, beautiful, and intuitive designs.
+              With a background in Computer Science and a focus on emerging technologies, I bridge the gap between traditional web development 
+              and modern AI implementations. I'm particularly experienced in Python-based machine learning, React ecosystems, and cloud 
+              architectures, enabling me to develop intelligent and efficient applications.
             </p>
             <p className="text-muted-foreground mb-8 leading-relaxed">
               When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
@@ -64,7 +66,7 @@ export function About() {
               </div>
               <div className="flex items-center">
                 <Code className="text-primary mr-2 h-5 w-5" />
-                <span className="text-foreground">3+ Years Experience</span>
+                <span className="text-foreground">web dev & AI Developer</span>
               </div>
               <div className="flex items-center">
                 <Briefcase className="text-primary mr-2 h-5 w-5" />

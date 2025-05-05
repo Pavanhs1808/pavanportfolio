@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowDown } from "lucide-react";
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+import { scrollToSection } from '@/utils/scroll';
 
 export function Hero() {
   return (
@@ -17,36 +18,41 @@ export function Hero() {
           >
             <p className="text-primary mb-2 font-medium tracking-wide">Hello, I'm</p>
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-              <span className="typewriter inline-block">Pavan HS</span>
+              <span >Pavan HS</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6">Frontend Developer & UI Designer</h2>
+            <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6">Sofware developper, Web developper, AI/ML Enthusiast,Problem solver</h2>
             <p className="text-muted-foreground mb-8 text-lg max-w-lg">
-              Crafting beautiful, responsive, and user-friendly web experiences with modern technologies.
+            Building powerful web applications and AI solutions with cutting-edge technologies, focusing on scalable architectures and intuitive user experiences,versatile in may ai agent model usage and Ai integration.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="#projects">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-medium">
-                  View My Work
-                </Button>
-              </Link>
-              <Link href="#contact">
-                <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/5">
-                  Contact Me
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="bg-primary text-white font-medium transform transition-transform hover:scale-105"
+                onClick={() => scrollToSection('projects')}
+              >
+                View My Work
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-primary text-primary transform transition-transform hover:scale-105"
+                onClick={() => scrollToSection('contact')}
+              >
+                Contact Me
+              </Button>
             </div>
             <div className="flex mt-8 space-x-4">
               <a href="https://github.com/pavanhs1808" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
                 <FaGithub className="text-2xl" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/in/pavan-hs-33137b272/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
                 <FaLinkedin className="text-2xl" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
-                <FaTwitter className="text-2xl" />
+              <a href="https://www.instagram.com/pavanhs_?igsh=MTdpMXM0MXVsNWRycg==" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
+                <FaInstagram className="text-2xl" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
-                <FaDribbble className="text-2xl" />
+              <a href="https://x.com/PavanHs1815" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
+                <FaTwitter className="text-2xl" />
               </a>
             </div>
           </motion.div>
@@ -67,9 +73,20 @@ export function Hero() {
               }}
             >
               <img 
-                src="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                alt="Developer illustration" 
-                className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover"
+                src="https://avatars.githubusercontent.com/u/135006096?v=4"
+                alt="Pavan HS" 
+                className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-lg"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.currentTarget.src);
+                  // Try loading with a different path
+                  if (e.currentTarget.src.startsWith('/')) {
+                    e.currentTarget.src = 'anime-profile.jpg';
+                  } else {
+                    e.currentTarget.src = '/default-avatar.png';
+                    e.currentTarget.onerror = null;
+                  }
+                }}
+                onLoad={() => console.log('Image loaded successfully')}
               />
             </motion.div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-secondary/20 rounded-full"></div>

@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import emailjs from 'emailjs-com';
 import { Mail, MapPin, Globe, Send } from "lucide-react";
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 // Contact form validation schema
 const contactFormSchema = z.object({
@@ -31,12 +31,12 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 // EmailJS configuration
-const EMAILJS_SERVICE_ID = 'service_pavanhs';
-const EMAILJS_TEMPLATE_ID = 'PALLtRYBITpMC5WoO';
-const EMAILJS_USER_ID = 'GIMRnHCDu8Cg0VJVJ';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
-// Initialize EmailJS
-emailjs.init(EMAILJS_USER_ID);
+// Initialize EmailJS with public key
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 export function Contact() {
   const { toast } = useToast();
@@ -59,13 +59,15 @@ export function Contact() {
         from_name: data.name,
         from_email: data.email,
         subject: data.subject,
-        message: data.message
+        message: data.message,
+        to_name: 'Pavan' // Add recipient name
       };
 
       const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        templateParams
+        templateParams,
+        EMAILJS_PUBLIC_KEY  // Add public key here
       );
 
       if (response.status === 200) {
@@ -93,12 +95,12 @@ export function Contact() {
   const contactInfo = [
     {
       title: "Email",
-      details: ["contact@pavanhs.dev", "hello@pavanhs.dev"],
+      details: ["pavanhs990@gmail.com", "pavanhs1815@gmail.com"],
       icon: Mail,
     },
     {
       title: "Location",
-      details: ["Bangalore, India", "Available for remote work worldwide"],
+      details: ["Bangalore, India", "Available for remote work "],
       icon: MapPin,
     },
     {
@@ -107,9 +109,9 @@ export function Contact() {
       icon: Globe,
       socialLinks: [
         { url: "https://github.com/pavanhs1808", icon: FaGithub },
-        { url: "#", icon: FaLinkedin },
-        { url: "#", icon: FaTwitter },
-        { url: "#", icon: FaDribbble },
+        { url: "https://www.linkedin.com/in/pavan-hs-33137b272/", icon: FaLinkedin },
+        { url: "https://www.instagram.com/pavanhs_?igsh=MTdpMXM0MXVsNWRycg==", icon: FaInstagram },
+        { url: "https://x.com/PavanHs1815", icon: FaTwitter },
       ],
     },
   ];
@@ -122,7 +124,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
+    <section id="contact" className="py-16 bg-background">
       <div className="container px-4">
         <SectionHeader
           title="Get In Touch"
@@ -147,7 +149,7 @@ export function Contact() {
                       <FormLabel className="text-foreground">Your Name</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="John Doe"
+                          placeholder="Your name here"
                           className="px-4 py-3 focus:ring-primary focus:border-primary"
                           {...field}
                         />
@@ -166,7 +168,7 @@ export function Contact() {
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="john@example.com"
+                          placeholder="email@example.com"
                           className="px-4 py-3 focus:ring-primary focus:border-primary"
                           {...field}
                         />
