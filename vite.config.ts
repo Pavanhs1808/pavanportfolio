@@ -1,27 +1,16 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/pavanportfolio/',
-  publicDir: 'public',
-  server: {
-    watch: {
-      usePolling: true
-    }
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  root: path.resolve(__dirname, "client"),
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-  },
-});
+      '@': path.resolve(__dirname, './src')
+    }
+  }
+})

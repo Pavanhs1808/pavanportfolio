@@ -136,7 +136,7 @@ export function Skills() {
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mr-4">
                     <Server className="h-5 w-5 text-secondary" />
                   </div>
-                  <h3 className="text-xl font-semibold">FRont and Backend Development</h3>
+                  <h3 className="text-xl font-semibold">Front and Backend Development</h3>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -241,7 +241,7 @@ export function Skills() {
                   <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mr-4">
                     <Code className="h-5 w-5 text-purple-500" />
                   </div>
-                  <h3 className="text-xl font-semibold">CSS Frameworks</h3>
+                  <h3 className="text-xl font-semibold">aiMlSkills</h3>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
