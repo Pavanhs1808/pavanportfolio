@@ -7,6 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
+  base: '/pavanportfolio/', // Add this line - should match your repository name
   publicDir: 'public',
   server: {
     watch: {
