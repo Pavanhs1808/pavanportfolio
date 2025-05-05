@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
-  base: '/pavanportfolio/', // Add this line - should match your repository name
+  base: '/pavanportfolio/',
   publicDir: 'public',
   server: {
     watch: {
@@ -16,12 +16,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist"),
+    outDir: 'dist',
     emptyOutDir: true,
   },
 });
