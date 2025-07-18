@@ -78,9 +78,12 @@ export function About() {
               </div>
             </div>
             
-            <Button variant="secondary" className="bg-foreground text-background hover:bg-foreground/90">
-              <FileDown className="mr-2 h-4 w-4" /> Download Resume
-            </Button>
+             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+               <Button variant="secondary" className="bg-foreground text-background hover:bg-foreground/90">
+               <FileDown className="mr-2 h-4 w-4" /> View Resume
+               </Button>
+             </a>
+
           </motion.div>
         </div>
       </div>
