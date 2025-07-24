@@ -26,7 +26,7 @@ export function About() {
             <div className="relative">
               <div className="w-full h-80 md:h-96 bg-muted rounded-lg overflow-hidden shadow-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+                  src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?semt=ais_hybrid&w=740" 
                   alt="Pavan coding" 
                   className="w-full h-full object-cover"
                 />
@@ -45,9 +45,9 @@ export function About() {
           >
             <h3 className="text-2xl font-bold mb-4">Who am I?</h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              I'm a versatile Full-Stack Developer with expertise in AI/ML technologies. I specialize in building scalable web applications 
-              and integrating artificial intelligence solutions. My strong foundation in both frontend and backend development allows me to create 
-              comprehensive solutions from concept to deployment.
+              Creative and versatile software developer with hands-on experience in web development, AI/ML, and scalable solution design. 
+              Skilled in building end-to-end web applications and integrating intelligent features using technologies like Retrieval-Augmented Generation (RAG) and Model Context Protocol (MCP).
+              Known for visual thinking, intuitive problem-solving, and blending frontend and backend expertise to craft user-focused, AI-powered systems from concept to deployment.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               With a background in Computer Science and a focus on emerging technologies, I bridge the gap between traditional web development 
@@ -62,7 +62,7 @@ export function About() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div className="flex items-center">
                 <GraduationCap className="text-primary mr-2 h-5 w-5" />
-                <span className="text-foreground">B.Tech in Computer Science</span>
+                <span className="text-foreground">B.E in Computer Science</span>
               </div>
               <div className="flex items-center">
                 <Code className="text-primary mr-2 h-5 w-5" />
