@@ -20,9 +20,9 @@ export function Hero() {
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               <span >Pavan HS</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6">Sofware developper, Web developper, AI/ML Enthusiast,Problem solver</h2>
+            <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6">Sofware developper, Web developper,RAG engineer, AI/ML Enthusiast,Problem solver</h2>
             <p className="text-muted-foreground mb-8 text-lg max-w-lg">
-            Building powerful web applications and AI solutions with cutting-edge technologies, focusing on scalable architectures and intuitive user experiences,versatile in many ai agent model usage and Ai integration.
+            Building powerful web applications and AI solutions with cutting-edge technologies like MCP, focusing on scalable architectures and intuitive user experiences,versatile in many ai agent model usage and Ai integration.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
